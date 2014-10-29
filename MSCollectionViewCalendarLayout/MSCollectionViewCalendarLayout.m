@@ -258,6 +258,7 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     
     // Time Row Header
     CGFloat timeRowHeaderMinX = fmaxf(self.collectionView.contentOffset.x, 0.0);
+    if (self.pinHeadersToScreenEdge) timeRowHeaderMinX = self.collectionView.contentOffset.x;
     BOOL timeRowHeaderFloating = ((timeRowHeaderMinX != 0) || self.displayHeaderBackgroundAtOrigin);;
     
     // Time Row Header Background
@@ -307,6 +308,7 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
 
     // Day Column Header
     CGFloat dayColumnHeaderMinY = fmaxf(self.collectionView.contentOffset.y, 0.0);
+    if (self.pinHeadersToScreenEdge) dayColumnHeaderMinY = self.collectionView.contentOffset.y;
     BOOL dayColumnHeaderFloating = ((dayColumnHeaderMinY != 0) || self.displayHeaderBackgroundAtOrigin);
     
     // Day Column Header Background
@@ -314,6 +316,7 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     UICollectionViewLayoutAttributes *dayColumnHeaderBackgroundAttributes = [self layoutAttributesForDecorationViewAtIndexPath:dayColumnHeaderBackgroundIndexPath ofKind:MSCollectionElementKindDayColumnHeaderBackground withItemCache:self.dayColumnHeaderBackgroundAttributes];
     // Frame
     CGFloat dayColumnHeaderBackgroundHeight = (self.dayColumnHeaderHeight + ((self.collectionView.contentOffset.y < 0.0) ? fabsf(self.collectionView.contentOffset.y) : 0.0));
+    if (self.pinHeadersToScreenEdge) dayColumnHeaderBackgroundHeight = self.dayColumnHeaderHeight;
     dayColumnHeaderBackgroundAttributes.frame = (CGRect){self.collectionView.contentOffset, {self.collectionView.frame.size.width, dayColumnHeaderBackgroundHeight}};
     // Floating
     dayColumnHeaderBackgroundAttributes.hidden = !dayColumnHeaderFloating;
