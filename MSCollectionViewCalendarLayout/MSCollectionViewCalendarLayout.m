@@ -834,6 +834,21 @@ NSUInteger const MSCollectionMinBackgroundZ = 0.0;
     [self.allAttributes removeAllObjects];
 }
 
+- (void)invalidateLayoutCacheAttributesOnly
+{
+    self.needsToPopulateAttributesForAllSections = YES;
+
+    // Invalidate cached item attributes
+    [self.itemAttributes removeAllObjects];
+    [self.verticalGridlineAttributes removeAllObjects];
+    [self.horizontalGridlineAttributes removeAllObjects];
+    [self.dayColumnHeaderAttributes removeAllObjects];
+    [self.dayColumnHeaderBackgroundAttributes removeAllObjects];
+    [self.timeRowHeaderAttributes removeAllObjects];
+    [self.timeRowHeaderBackgroundAttributes removeAllObjects];
+    [self.allAttributes removeAllObjects];
+}
+
 #pragma mark Dates
 
 - (NSDate *)dateForTimeRowHeaderAtIndexPath:(NSIndexPath *)indexPath
